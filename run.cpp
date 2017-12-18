@@ -4,10 +4,10 @@
 using namespace std;
 int main(int argc, char** argv){
   string filename(argv[1]);
-  string compile = "avr-gcc -g -Os -mmcu=atmega32 -c " + filename + ".cpp";
+  string compile = "avr-g++ -g -Os -mmcu=atmega32 -c " + filename + ".cpp";
   system(compile.c_str());
   cout << compile << endl;
-  compile = "avr-gcc -g -mmcu=atmega32 -o " + filename + ".elf " + filename + ".o";
+  compile = "avr-g++ -g -mmcu=atmega32 -o " + filename + ".elf " + filename + ".o";
   system(compile.c_str());
   cout << compile << endl;
   compile = "avr-objcopy -j .text -j .data -O ihex " + filename + ".elf " + filename + ".hex";
