@@ -1,19 +1,21 @@
-# AVR HEX FILE CREATOR
-# Creating hex file for atmega32 microcontrollers
+# AVR compiling and burning utilities
 
-A simple utility to create hex files for your avr projects.
+- Contains makefile for ATmega32 microcontroller.
+- Contains a utility to burn a hex file to the ATmega32.
 
-Does the following:
 
-- avr-gcc -g -Os -mmcu=atmega32 -c filename.cpp
 
-- avr-gcc -g -mmcu=atmega32 -o filename.elf filename.o
+# Usage
+- To compile a project, just type 'make' in the terminal.
+  - But first, you need to modify the makefile. Open the makefile in a text editor.
+    Change *'TARGET = led'* to your desired file. For example, to compile a file called
+    bluetooth.cpp change it to *'TARGET = bluetooth'*.
+  - If there are any other dependencies (eg. uart.cpp, adc.cpp etc.), edit *'CPPSRC = '*
+     to your dependencies. For example, if bluetooth.cpp depends on uart.cpp, edit the makefile as
+    *'CPPSRC = uart.cpp'*.
+- This will now create hex and elf files. To burn the created file, type **./burn** in the terminal.
+  - Again, you have to edit the file first. Open it in a text editor, change *led.hex* to your filename
+    like *bluetooth.hex*.
+  - Save the file and in the terminal type **chmod +x burn**.
+  - Now you can run the utility as **./burn** .
 
-- avr-objcopy -j .text -j .data -O ihex filename.elf filename.hex
-
-Finally, the output is filename.hex
-
-# Using the utility
-To use it open up a terminal, and navigate to the directory with your source file.
-Then type:
-  * ./run filename
